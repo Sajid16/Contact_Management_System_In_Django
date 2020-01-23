@@ -20,3 +20,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cms.urls')),
 ]
+
+######################### customizing admin panel name snad other stuffs ###################################
+
+admin.site.site_header = 'Contact Management System'
+admin.site.index_title = 'Welcome to Contact Management Project'
+admin.site.site_title = 'Contact Panel'
