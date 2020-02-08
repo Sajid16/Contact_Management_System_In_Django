@@ -1,16 +1,15 @@
 {% load static %}
 
 {% if contacts.gender == 'male' %}
-    <div class="card my-2 mx-2 boy-card">
+    <div class="card my-2 mx-2 boy-card {% if 'detail' in request.path %} mx-auto w-25 {% endif %} ">
         <img src="{% if contacts.image %}
         {{contacts.image.url}}
         {% else %}
         {% static 'images/boy.png' %}
         {% endif %}" class="img-fluid" />
         <div class="card-header">
-        <a href="detail.html" class="text-white header-link"
-            ><i class="fas fa-mars mr-2"></i> {{contacts.name}}</a
-        >
+        <a href="{% url 'detail' contacts.id %}" class="text-white header-link"
+            ><i class="fas fa-mars mr-2"></i> {{contacts.name}}</a>
         </div>
         <div class="card-body pb-0">
         <p>
@@ -28,10 +27,10 @@
 <!-- Card for details ends -->
 {% else %}
 
-    <div class="card my-2 mx-2 girl-card">
+    <div class="card my-2 mx-2 girl-card {% if 'detail' in request.path %} mx-auto w-25 {% endif %} ">
         <img src="{% static 'images/girl.png' %}" class="img-fluid" />
         <div class="card-header">
-        <a href="detail.html" class="text-white header-link"
+        <a href="{% url 'detail' contacts.id %}" class="text-white header-link"
             ><i class="fas fa-venus mr-2"></i> {{contacts.name}} </a
         >
         </div>

@@ -7,7 +7,7 @@ from cms.models import Contact
 
 
 class ContactCustomization(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'info', 'gender', 'image', 'date_added')
+    list_display = ('id','name', 'email', 'phone', 'info', 'gender', 'image', 'date_added')
     # list_editable = ('name',)
     list_display_links = ('name',) # list_display_links item cannot be in list_editable
     list_editable = ('gender',) # here comma has a massive role if tuple has only one item
@@ -16,7 +16,7 @@ class ContactCustomization(admin.ModelAdmin):
     list_filter = ('gender', 'date_added')
 
 
-# Register your models here.
+# Register your models here. 
 
 admin.site.register(Contact, ContactCustomization)
 
