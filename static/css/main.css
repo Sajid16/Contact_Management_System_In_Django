@@ -29,6 +29,10 @@ nav {
   border-radius: 8px;
   font-family: cursive;
 }
+.feature-link{
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
 .logo:hover {
   color: white;
   text-decoration: none;
@@ -43,7 +47,7 @@ nav {
   color: palegoldenrod;
 }
 
-form {
+/* form {
   position: relative;
 }
 button {
@@ -54,9 +58,9 @@ button {
 }
 button i {
   color: var(--back);
-}
+} */
 
-input {
+.search-box {
   border-radius: 0px !important;
   width: 250px;
   border: none !important;

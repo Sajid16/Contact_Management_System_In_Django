@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from cms.models import Contact
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 def home(request):
@@ -21,6 +22,12 @@ class DetailPageView(DetailView):
     template_name = 'detail.html'
     model = Contact
     context_object_name = 'contacts'
+
+class ContactCreateView(CreateView):
+    model = Contact
+    template_name = 'create.html'
+    fields = ['name','email','phone','info','gender','image']
+    success_url = '/'
 
 ####################### class based view end #########################
 
