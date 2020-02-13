@@ -17,3 +17,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
     
+    #################### ordering data into serial that i want for this particular class in this model #################
+    class Meta:
+        ordering = ['-id']
+    
