@@ -3,9 +3,12 @@ from cms.models import Contact
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.views.generic.edit import CreateView
+from cms import test_function
 
 # Create your views here.
 def home(request):
+    r = test_function.addition(5,6)
+    print("the value of r is: ", r)
     context = {
         'contacts': Contact.objects.all()
     }
