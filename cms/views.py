@@ -7,8 +7,18 @@ from cms import test_function
 
 # Create your views here.
 def home(request):
+
+    ############## testing external py file's funtion in views #####################
+
     r = test_function.addition(5,6)
     print("the value of r is: ", r)
+
+    ################# testing external py file's class based function on views #############
+
+    p1 = test_function.sajid(30, 40)
+    s = p1.add()
+    print("the value of s from the class based function is: ", s)
+
     context = {
         'contacts': Contact.objects.all()
     }
