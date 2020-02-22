@@ -2,17 +2,35 @@ from django.shortcuts import render, get_object_or_404, redirect
 from cms.models import Contact
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
+<<<<<<< HEAD
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+=======
+from django.views.generic.edit import CreateView
+from cms import test_function
+>>>>>>> 46c05d0c77c1d0f2f5e365f5bba142039ad2c331
 
 # Create your views here.
 def home(request):
 
+<<<<<<< HEAD
     ############ getting username who is logged in ###############
     username = None
     username = request.user
     print(username)
 
     ##############################################################
+=======
+    ############## testing external py file's funtion in views #####################
+
+    r = test_function.addition(5,6)
+    print("the value of r is: ", r)
+
+    ################# testing external py file's class based function on views #############
+
+    p1 = test_function.sajid(30, 40)
+    s = p1.add()
+    print("the value of s from the class based function is: ", s)
+>>>>>>> 46c05d0c77c1d0f2f5e365f5bba142039ad2c331
 
     context = {
         'contacts': Contact.objects.all()
