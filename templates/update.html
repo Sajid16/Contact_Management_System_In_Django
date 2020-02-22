@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-Create New Contact
+Update Information
 {% endblock title %}
 
 {% block main_content %}
@@ -17,7 +17,7 @@ Create New Contact
     
     {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+    <input type="submit" value="Update" class="w-100 text-white text-center my-2 btn btn-info">
 
     </form>
 </div>

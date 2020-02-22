@@ -1,11 +1,19 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from cms.models import Contact
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 def home(request):
+
+    ############ getting username who is logged in ###############
+    username = None
+    username = request.user
+    print(username)
+
+    ##############################################################
+
     context = {
         'contacts': Contact.objects.all()
     }
@@ -28,6 +36,22 @@ class ContactCreateView(CreateView):
     template_name = 'create.html'
     fields = ['name','email','phone','info','gender','image']
     success_url = '/'
+
+class ContactUpdateView(UpdateView):
+    model = Contact
+    template_name = 'update.html'
+    fields = ['name','email','phone','info','gender','image']
+    
+    def form_valid(self, form):
+        instance = form.save()
+        return redirect('detail', instance.pk)
+
+# class ContactDeleteView(DeleteView):
+#     model = Contact
+#     template_name = 'delete.html'
+#     success_url = '/'
+
+
 
 ####################### class based view end #########################
 
@@ -55,3 +79,9 @@ def search(request):
         }
 
     return render(request, 'search.html', context)
+
+
+def Delete(request, id):
+    contact_information = Contact.objects.get(pk = id)
+    contact_information.delete()
+    return redirect('home')

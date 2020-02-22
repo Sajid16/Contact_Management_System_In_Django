@@ -7,7 +7,8 @@ urlpatterns = [
     path('detail/<id>/', views.detail, name='detail'),
     path('detail_class/<pk>/', views.DetailPageView.as_view(), name='detail2'),
     path('search/', views.search, name='search'),
-    path('update/<id>/', views.detail, name='update'),
-    path('delete/<id>/', views.detail, name='delete'),
+    path('delete/<id>/', views.Delete, name='delete'),
     path('contacts/create/', views.ContactCreateView.as_view(), name='create'),
+    path('contacts/update/<pk>/', views.ContactUpdateView.as_view(), name='update'),
+    #path('contacts/delete/<pk>/', views.ContactDeleteView.as_view(), name='delete'),
 ]

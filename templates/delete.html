@@ -3,13 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-Create New Contact
+Delete Information
 {% endblock title %}
 
 {% block main_content %}
 
 <div class="container">
-    <h2 class="heading font-weight-light text-center">Create a New Contact</h2>
+    <h2 class="heading font-weight-light text-center">Delete {{contact.name}}</h2>
     <hr>
 </div>
 <div class="container w-25 card p-4 mt-4">
@@ -17,7 +17,7 @@ Create New Contact
     
     {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" value="Create" class="w-100 text-white text-center my-2 btn btn-info">
+    <input type="submit" value="Delete" class="w-100 text-white text-center my-2 btn btn-danger">
 
     </form>
 </div>
