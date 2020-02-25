@@ -38,12 +38,27 @@
         <i class="fas fa-user-circle"></i>&nbsp;Contacts
       </a>
       <p class= "feature-link m-0 p-0">
+        
+        {% if request.user.is_authenticated %}
+        
         <a href= "{% url 'create' %}" class="mr-4 text-white">
             <i class = "fas fa-plus"></i> &nbsp; Add Contact
         </a>
+        <a href= "{% url 'logout' %}" class="mr-4 text-white">
+            <i class = "fas fa-sign-out-alt"></i> &nbsp; logout
+        </a>
+
+        {% else %}
+
+        <a href= "{% url 'signup' %}" class="mr-4 text-white">
+            <i class = "fas fa-user-plus"></i> &nbsp; SignUp
+        </a>
+
         <a href= "{% url 'login' %}" class="mr-4 text-white">
             <i class = "fas fa-sign-in-alt"></i> &nbsp; Login
         </a>
+
+        {% endif %}
       </p>
       <form class="form-inline my-2" action="{% url 'search' %}" method = "POST">
       {% csrf_token %}
