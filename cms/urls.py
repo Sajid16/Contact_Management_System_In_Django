@@ -2,8 +2,8 @@ from django.urls import path
 from cms import views
 
 urlpatterns = [
-    # path('', views.home, name='home'),
-    path('', views.HomePageView.as_view(), name='home'),
+    path('', views.home, name='home'),
+    # path('', views.HomePageView.as_view(), name='home'),
     #path('detail/<id>/', views.detail, name='detail'),
     path('detail/<pk>/', views.DetailPageView.as_view(), name='detail'),
     path('search/', views.search, name='search'),
