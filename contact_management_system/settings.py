@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.contrib import messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -141,4 +142,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
+
+########## message tags #############
+
+MESSAGE_TAGS = {
+   messages.INFO: 'alert alert-info',
+   messages.SUCCESS: 'alert alert-success',
+   messages.ERROR: 'alert alert-danger',
+   messages.WARNING: 'alert alert-warning',
+}
 

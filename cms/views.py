@@ -8,34 +8,35 @@ from django.contrib.auth.mixins import LoginRequiredMixin #this is only for clas
 from django.contrib.auth.decorators import login_required #this is used for function based views
 from django.views.decorators.http import require_POST
 from django.urls import reverse_lazy #it will help to change url just using the url name like used in SignUpView class
+from django.contrib import messages
 from cms import test_function
 
 # Create your views here.
-def home(request):
+# def home(request):
 
-    ############ getting username who is logged in ###############
+#     ############ getting username who is logged in ###############
     
-    username = None
-    username = request.user
-    print(username)
+#     username = None
+#     username = request.user
+#     print(username)
 
-    ##############################################################
+#     ##############################################################
 
-    ############## testing external py file's function in views #####################
+#     ############## testing external py file's function in views #####################
 
-    r = test_function.addition(5,6)
-    print("the value of r is: ", r)
+#     r = test_function.addition(5,6)
+#     print("the value of r is: ", r)
 
-    ################# testing external py file's class based function on views #############
+#     ################# testing external py file's class based function on views #############
 
-    p1 = test_function.sajid(30, 40)
-    s = p1.add()
-    print("the value of s from the class based function is: ", s)
+#     p1 = test_function.sajid(30, 40)
+#     s = p1.add()
+#     print("the value of s from the class based function is: ", s)
 
-    context = {
-        'contacts': Contact.objects.filter(manager = request.user)
-    }
-    return render(request, 'index.html', context)
+#     context = {
+#         'contacts': Contact.objects.filter(manager = request.user)
+#     }
+#     return render(request, 'index.html', context)
 
 
 @login_required
@@ -60,7 +61,7 @@ def search(request):
                                                Q(email__iexact = search_term))
         context = {
             'search_term': search_term,
-            'contacts': search_result
+            'contacts': search_result.filter(manager = request.user)
         }
 
     return render(request, 'search.html', context)
@@ -76,16 +77,20 @@ def Delete(request, id):
 
 #################### creating class based view #########################
 
-# class HomePageView(LoginRequiredMixin, ListView):
-#     template_name = 'index.html'
-#     model = Contact
-#     context_object_name = 'contacts'
+class HomePageView(LoginRequiredMixin, ListView):
+    template_name = 'index.html'
+    model = Contact
+    context_object_name = 'contacts'
+    
+    def get_queryset(self):
+        contacts = super().get_queryset()
+        return contacts.filter(manager = self.request.user)
 
 class DetailPageView(LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
     model = Contact
     context_object_name = 'contacts'
-
+    
 class ContactCreateView(LoginRequiredMixin, CreateView):
     model = Contact
     template_name = 'create.html'
@@ -95,10 +100,12 @@ class ContactCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit = False)
         instance.manager = self.request.user
         instance.save()
+        messages.success(self.request, 'Your contact has been successfully created')
         return redirect('home')
 
 class ContactUpdateView(LoginRequiredMixin, UpdateView):
     model = Contact
+    context_object_name = 'contacts'
     template_name = 'update.html'
     fields = ['name','email','phone','info','gender','image']
     

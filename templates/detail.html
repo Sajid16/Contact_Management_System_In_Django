@@ -3,11 +3,16 @@
 {% load static %}
 
 {% block title %}
+{% if contacts.manager == request.user %}
 {{ contacts.name }}
+{% else %}
+You don't have access to this page
+{% endif %}
 {% endblock title %}
 
 {% block main_content %}
 <!-- Main Section -->
+{% if contacts.manager == request.user %}
     <div class="container">
       <h2 class="heading font-weight-light text-center">{{ contacts.name }}</h2>
       <hr />
@@ -30,4 +35,9 @@
     </div>
 
     <!-- Main Section ends-->
+{% else %}
+    <div class="container">
+      <h2 class="heading font-weight-light text-center">You don't have access to this page!</h2>
+    </div>
+{% endif %}
 {% endblock main_content %}
