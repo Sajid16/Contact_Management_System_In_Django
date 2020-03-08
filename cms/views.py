@@ -71,6 +71,7 @@ def search(request):
 def Delete(request, id):
     contact_information = Contact.objects.get(pk = id)
     contact_information.delete()
+    messages.warning(request, 'Your contact has been successfully deleted')
     return redirect('home')
 
 

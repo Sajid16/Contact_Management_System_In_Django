@@ -26,9 +26,9 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 SECRET_KEY = 'fea4x9w1&8_h&hadjg3+r4k4)rzi+&ud5^5uuizatn5re@82qu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -143,7 +143,7 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
-########## message tags #############
+########## message tags (not used)#############
 
 MESSAGE_TAGS = {
    messages.INFO: 'alert alert-info',
